@@ -1,0 +1,24 @@
+/* login.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+
+    display: flex;
+    justify-content: flex-start;  /* ✅ เปลี่ยนจาก center เป็น left */
+    align-items: stretch;          /* ✅ ให้กล่องยืดเต็มสูง */
+    height: 100vh;
+}
+
+.login-container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 0 8px 8px 0;      /* ✅ โค้งเฉพาะขอบขวา */
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px;
+    height: 100vh;                  /* ✅ ให้เต็มความสูง */
+    box-sizing: border-box;
+}

@@ -1,0 +1,133 @@
+.register-container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px 0 0 8px; /* โค้งซ้ายบน ซ้ายล่าง */
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 320px;
+    height: 100vh;
+    box-sizing: border-box;
+    position: fixed;
+    right: 0;  /* อยู่ด้านขวาของหน้าจอ */
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;  
+}
+
+.register-header {
+    margin-bottom: 2rem;
+    width: 100%;
+    /* text-align: center;  ไม่ต้องซ้ำ เพราะ container ตั้งไว้แล้ว */
+}
+
+.register-header h1 {
+    font-size: 1.8rem;
+    margin: 0 0 0.5rem 0;
+    color: #333333;
+}
+
+.register-header .login-link {
+    font-size: 0.9rem;
+    color: #333333;
+}
+
+.register-header .login-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.register-header .login-link a:hover {
+    text-decoration: underline;
+}
+
+.register-container form {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%; /* ให้ form กว้างเต็ม container */
+    max-width: 320px;
+}
+
+.register-container label {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: #555555;
+    text-align: left; /* ให้ label ชิดซ้าย ไม่กึ่งกลาง */
+    display: block; /* ทำให้ text-align ทำงาน */
+}
+
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"] {
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.register-container button {
+    padding: 0.8rem;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0;
+}
+
+.register-container button:hover {
+    background-color: #0056b3;
+}
+
+.error {
+    font-size: 0.9rem;
+    color: red;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.forgot-password-link {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #007bff;
+    text-align: center;
+    width: 100%;
+}
+
+.forgot-password-link a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.forgot-password-link a:hover {
+    text-decoration: underline;
+}
+
+.register-links {
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: #333333;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+    width: 100%;
+}
+
+.register-links a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.register-links a:hover {
+    text-decoration: underline;
+}

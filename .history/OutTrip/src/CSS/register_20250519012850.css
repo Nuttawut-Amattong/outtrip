@@ -1,0 +1,115 @@
+.register-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 320px;
+  height: 100vh;
+  background-color: #fff;
+  padding: 2rem;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  /* ลบ align-items: center; เพื่อให้ label ชิดซ้าย */
+  /* ค่าเริ่มต้นคือ flex-start อยู่แล้ว */
+  
+  text-align: left; /* ให้ label และ input ชิดซ้าย */
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.register-header {
+  width: 100%;
+  margin-bottom: 2rem;
+  text-align: center; /* กึ่งกลางข้อความ header */
+}
+
+.register-header h1,
+.register-header h2,
+.forgot-password-link {
+  margin: 0 0 0.5rem 0;
+  padding: 0;
+  width: 100%;
+  text-align: center; /* กึ่งกลางข้อความ header */
+}
+
+.register-header h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.register-header h2 {
+  font-size: 1.2rem;
+  color: #555555;
+  font-weight: normal;
+}
+
+.forgot-password-link {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.forgot-password-link a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.forgot-password-link a:hover {
+  text-decoration: underline;
+}
+
+/* ฟอร์มและส่วนอื่นๆ */
+.register-container form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.register-container label {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+  color: #555555;
+  text-align: left;  /* ชิดซ้าย */
+  display: block;    /* ให้ text-align ทำงาน */
+}
+
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"] {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.register-container input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.register-container button {
+  padding: 0.8rem;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-container button:hover {
+  background-color: #0056b3;
+}
+
+.register-container p {
+  font-size: 0.9rem;
+  color: red;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}

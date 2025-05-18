@@ -1,0 +1,64 @@
+import { useState } from "react";
+import '../CSS/login.css';
+
+function Login() {
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
+  const [showForgot, setShowForgot] = useState(false); // state ควบคุมโชว์ forgot password
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("User:", user);
+    console.log("Password:", password);
+  };
+
+  return (
+    <div className="login-container">
+      <div className="login-header">
+        <h1>OutTrip</h1>
+      </div>
+
+      {/* ย้ายลิงก์ Register ขึ้นไปด้านบน */}
+      <div className="login-links">
+        <div className="register-link">
+          Don't have an account? <a href="/register">Register</a>
+        </div>
+      </div>
+
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="user">Username</label>
+        <input
+          type="text"
+          id="user"
+          value={user}
+          onChange={(e) => setUser(e.target.value)}
+          placeholder="Username"
+          required
+        />
+
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          required
+          onFocus={() => setShowForgot(true)} // เมื่อโฟกัสช่องรหัสผ่าน ให้แสดง forgot password
+          onBlur={() => setShowForgot(false)} // ถ้าอยากซ่อนเมื่อออกจากช่อง ให้ใช้ onBlur ด้วย
+        />
+
+        <button type="submit">Login</button>
+
+        {/* แสดง forgot password เมื่อ showForgot เป็น true */}
+        {showForgot && (
+          <div className="forgot-password-link">
+            <a href="/forgot-password">Forgot Password?</a>
+          </div>
+        )}
+      </form>
+    </div>
+  );
+}
+
+export default Login;

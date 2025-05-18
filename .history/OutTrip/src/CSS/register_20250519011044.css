@@ -1,0 +1,116 @@
+/* register.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+.register-container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px 0 0 8px;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1); 
+    width: 100%;
+    max-width: 320px;
+    box-sizing: border-box;
+    position: absolute;
+    right: 0;   
+    top: 0;
+}
+
+.register-container h2 {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #333333;
+    text-align: left;
+    margin-left: 0;    
+}
+
+
+.register-container form {
+    display: flex;
+    
+    flex-direction: column;
+}
+
+.register-container label {
+    font-size: 1rem;
+    
+    margin-bottom: 0.3rem;
+    color: #555555;
+    display: block;
+}
+
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"] {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.register-container input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.register-container button {
+    padding: 0.8rem;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-container button:hover {
+    background-color: #0056b3;
+}
+
+.register-container p {
+    font-size: 0.9rem;
+    color: red;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+}
+
+.register-header {
+  text-align: left;      /* ชิดซ้าย */
+  margin-bottom: 2rem;   /* เว้นระยะห่างจากฟอร์ม */
+}
+
+.register-header h1,
+.register-header h2,
+.forgot-password-link {
+  margin: 0 0 0.5rem 0;  /* เว้นบรรทัดล่างเล็กน้อย */
+  color: #333333;
+}
+
+.register-header h1 {
+  font-size: 1.5rem;
+}
+
+.register-header h2 {
+  font-size: 1.2rem;
+  color: #555555;
+}
+
+.forgot-password-link {
+  font-size: 0.9rem;
+  color: inherit;       /* ใช้สีเดียวกับ container */
+}
+
+.forgot-password-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.forgot-password-link a:hover {
+  text-decoration: underline;
+}

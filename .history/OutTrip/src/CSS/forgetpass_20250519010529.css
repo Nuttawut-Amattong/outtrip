@@ -1,0 +1,115 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    display: block;
+}
+
+
+.forgetpass-container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 0 8px 8px 0;        
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;                  
+    height: 100vh;                   
+    box-sizing: border-box;
+    position: fixed;                   
+    left: 0;
+    top: 0;
+}
+
+.forgetpass-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.forgetpass-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.forgetpass-label {
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 6px;
+}
+
+.forgetpass-input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 16px;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.forgetpass-input:focus {
+    border-color: #999;
+}
+
+.forgetpass-btn {
+    background-color: #333;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.forgetpass-btn:hover {
+    background-color: #222;
+}
+
+.forgetpass-link {
+    margin-top: 14px;
+    font-size: 0.85rem;
+    color: #666;
+    text-align: center;
+    text-decoration: none;
+}
+
+.forgetpass-link:hover {
+    text-decoration: underline;
+}
+
+.register-header {
+  margin-bottom: 2rem;  /* เว้นระยะห่างกับฟอร์ม */
+  text-align: right;    /* หรือ left ตามที่ต้องการ */
+}
+
+.register-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333333;
+}
+
+.register-header h2 {
+  margin: 0.5rem 0 1rem 0;
+  font-size: 1.2rem;
+  color: #555555;
+}
+
+.forgot-password-link {
+  font-size: 0.9rem;
+  color: #007bff;
+}
+
+.forgot-password-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.forgot-password-link a:hover {
+  text-decoration: underline;
+}
+
