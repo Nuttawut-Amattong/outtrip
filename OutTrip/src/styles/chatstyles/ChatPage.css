@@ -1,0 +1,22 @@
+.chat-page {
+    display:flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    background-color: white;
+}
+
+.list-container {
+    width: 20%;
+    z-index: 1;
+}
+
+.chatbody-container {
+    width: 60%;
+    height: 100vh;
+}
+
+.detail-container {
+    width: 20%;
+    height: 100vh;
+}

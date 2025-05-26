@@ -7,20 +7,16 @@ function Login({ onLoginSuccess }) {
   const [showForgot, setShowForgot] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [successMessage, setSuccessMessage] = useState(""); // แสดงข้อความ login ผ่าน
+  const [successMessage, setSuccessMessage] = useState("");
 
-  // กำหนด pattern ตรวจสอบ username
   const isValidUsername = (value) => {
     const usernameRegex = /^[a-zA-Z0-9_.]{3,8}$/;
     return usernameRegex.test(value);
   };
 
-  // อัพเดต user input พร้อมเช็ค error
   const handleUserChange = (e) => {
     const val = e.target.value;
     setUser(val);
-
-    // เคลียร์ข้อความเตือนทุกครั้งเมื่อพิมพ์ใหม่
     setSuccessMessage("");
 
     if (val.includes("@")) {
@@ -32,7 +28,6 @@ function Login({ onLoginSuccess }) {
     }
   };
 
-  // ส่งข้อมูล login ไป backend
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -40,6 +35,7 @@ function Login({ onLoginSuccess }) {
       setError("Please enter a valid username before submitting.");
       return;
     }
+
     if (!password) {
       setError("Please enter your password.");
       return;
@@ -47,25 +43,33 @@ function Login({ onLoginSuccess }) {
 
     setLoading(true);
     setError("");
-    setSuccessMessage(""); // เคลียร์ข้อความเตือนก่อนเริ่มส่ง
+    setSuccessMessage("");
 
     try {
       const res = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: user, password }), 
+        body: JSON.stringify({ username: user, password }),
       });
 
       const data = await res.json();
 
       if (res.ok) {
-        setError("");
+        console.log("Login success:", data);
+
+        // ✅ เก็บข้อมูลลง localStorage
+        localStorage.setItem("userId", data.user.id); // หรือ .id แล้วแต่ backend
+        localStorage.setItem("username", data.user.username);
+        localStorage.setItem("email", data.user.email);
+        localStorage.setItem("token", data.token); // ถ้ามีใช้ JWT
+
+        setSuccessMessage(`Welcome back, ${data.user.username}!`);
+
+        if (onLoginSuccess) {
+          onLoginSuccess(data); // ส่งต่อไปหน้าอื่น เช่น dashboard
+        }
+
         setLoading(false);
-
-       
-        setSuccessMessage(`Welcome back, ${data.user?.username || user}!`);
-
-        if (onLoginSuccess) onLoginSuccess(data);
       } else {
         setLoading(false);
         setError(data.message || "Login failed. Please try again.");
@@ -94,10 +98,8 @@ function Login({ onLoginSuccess }) {
           className={styles.input}
           autoComplete="username"
         />
-        {/* แสดง error */}
-        {error && <div style={{ color: "red", fontSize: "0.85rem", marginBottom: "1rem" }}>{error}</div>}
 
-        {/* แสดง success message */}
+        {error && <div style={{ color: "red", fontSize: "0.85rem", marginBottom: "1rem" }}>{error}</div>}
         {successMessage && (
           <div style={{ color: "green", fontSize: "0.85rem", marginBottom: "1rem" }}>
             {successMessage}
