@@ -11,7 +11,7 @@ const router = express.Router();
 // Register
 router.post("/register", async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, interests } = req.body;
 
     // เช็คว่ามี user นี้ในระบบหรือยัง
     const existingUser = await User.findOne({ email });
@@ -22,7 +22,7 @@ router.post("/register", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // สร้าง user ใหม่
-    const newUser = new User({ username, email, password: hashedPassword });
+    const newUser = new User({ username, email, password: hashedPassword, interests });
     await newUser.save();
 
     res.status(201).json({ message: "User registered successfully." });
