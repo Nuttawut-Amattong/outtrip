@@ -10,6 +10,7 @@ const TripForm = () => {
         description: "",
         location: "",
         date: "",
+        tag: [],
     });
 
     const [message, setMessage] = useState("");
@@ -19,6 +20,14 @@ const TripForm = () => {
         setFormData((prev) => ({
             ...prev,
             [name]: value,
+        }));
+    };
+
+    const handleTagChange = (e) => {
+        const options = Array.from(e.target.selectedOptions);
+        setFormData((prev) => ({
+            ...prev,
+            tag: options.map((opt) => opt.value),
         }));
     };
 
@@ -40,7 +49,7 @@ const TripForm = () => {
 
             if (res.ok) {
                 setMessage("Trip created successfully!");
-                setFormData({ name: "", description: "", location: "", date: "" });
+                setFormData({ name: "", description: "", location: "", date: "", tag: [] });
                 setTimeout(() => navigate("/home"), 1500);
             } else {
                 setMessage(data.message || "Failed to create trip.");
@@ -89,6 +98,29 @@ const TripForm = () => {
                 onChange={handleChange}
                 required
             />
+
+            <label>Tag:</label>
+            <select
+                name="tag"
+                value={formData.tag}
+                onChange={handleChange}
+                className="trip-tag-select"
+                required
+            >
+                <option value="" disabled>-- Select your favorite trip --</option>
+                <option value="Beach">Beach</option>
+                <option value="Mountain">Mountain</option>
+                <option value="City">City</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Forest">Forest</option>
+                <option value="Desert">Desert</option>
+                <option value="Countryside">Countryside</option>
+                <option value="Island">Island</option>
+                <option value="Historical">Historical</option>
+                <option value="Lake">Lake</option>
+                <option value="Cruise">Cruise</option>
+                <option value="Road Trip">Road Trip</option>
+            </select>
 
             <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <button className="button-back" type="button" onClick={() => navigate("/home")}>

@@ -20,7 +20,8 @@ body {
 }
 
 .trip-form input,
-.trip-form textarea {
+.trip-form textarea,
+.trip-form select {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;

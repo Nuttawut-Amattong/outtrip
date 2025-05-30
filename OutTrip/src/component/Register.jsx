@@ -198,6 +198,14 @@ function Register({ onRegisterSuccess }) {
           <option value="Mountain">Mountain</option>
           <option value="City">City</option>
           <option value="Adventure">Adventure</option>
+          <option value="Forest">Forest</option>
+          <option value="Desert">Desert</option>
+          <option value="Countryside">Countryside</option>
+          <option value="Island">Island</option>
+          <option value="Historical">Historical</option>
+          <option value="Lake">Lake</option>
+          <option value="Cruise">Cruise</option>
+          <option value="Road Trip">Road Trip</option>
         </select>
 
         {serverError && <div className={styles.error} style={{ marginTop: "1rem" }}>{serverError}</div>}
