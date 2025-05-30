@@ -20,3 +20,7 @@
     width: 20%;
     height: 100vh;
 }
+
+.chatlist-items:hover {
+    background-color: darkcyan;
+}

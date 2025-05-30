@@ -1,68 +1,39 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import '../../styles/chatstyles/Chatdetail.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 const Chatdetail = () => {
-    const [otherUser, setOtherUser] = useState("Loading...");
+  const { receiverId } = useParams(); 
+  const [receiverName, setReceiverName] = useState("Loading...");
 
-useEffect(() => {
-    const currentUserId = localStorage.getItem("userId");
-    if (!currentUserId) {
-        setOtherUser("Guest");
-        return;
-    }
+  useEffect(() => {
+    if (!receiverId) return;
 
-    fetch("http://localhost:5000/api/users")
-        .then(res => res.json())
-        .then(data => {
-            const others = data.filter(user => user.id !== currentUserId);
-            if (others.length > 0) {
-                setOtherUser(others[0].username); // ดึงคนแรกที่ไม่ใช่ตัวเอง
-            } else {
-                setOtherUser("No other users");
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            setOtherUser("Error");
-        });
-}, []);
+    fetch(`http://localhost:5000/api/users/${receiverId}`)
+      .then(res => res.json())
+      .then(data => setReceiverName(data.username))
+      .catch(() => setReceiverName("Error"));
+  }, [receiverId]);
 
-    return (
-        <div className='detail'>
-            <div className="user">
-                <AccountCircleIcon fontSize='large' />
-                <div className="texts">
-                    <span>{otherUser}</span> {/* ✅ เปลี่ยนตรงนี้ */}
-                </div>
-            </div>
-
-            <div className="star">
-                <StarOutlineIcon fontSize='large' />
-                <StarOutlineIcon fontSize='large' />
-                <StarOutlineIcon fontSize='large' />
-                <StarOutlineIcon fontSize='large' />
-                <StarOutlineIcon fontSize='large' />
-            </div>
-
-            <div className="Menu-detail">
-                <div className="Profile">
-                    <AccountBoxIcon fontSize='large' />
-                    <div className="texts">
-                        <span>Profile</span>
-                    </div>
-                </div>
-                <div className="Posttrip">
-                    <AccountBoxIcon fontSize='large' />
-                    <div className="texts">
-                        <span>Post Trip</span>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className='detail'>
+      <div className="user">
+        <AccountCircleIcon fontSize='large' />
+        <div className="texts">
+          <span>{receiverName}</span>
         </div>
-    );
+      </div>
+
+      <div className="star">
+        {[...Array(5)].map((_, i) => <StarOutlineIcon key={i} fontSize='large' />)}
+      </div>
+
+      
+    </div>
+  );
 };
 
 export default Chatdetail;
