@@ -62,6 +62,7 @@ function Login({ onLoginSuccess }) {
         localStorage.setItem("username", data.user.username);
         localStorage.setItem("email", data.user.email);
         localStorage.setItem("token", data.token); // ถ้ามีใช้ JWT
+        localStorage.setItem("interests", JSON.stringify(data.user.interests || []));
 
         setSuccessMessage(`Welcome back, ${data.user.username}!`);
 

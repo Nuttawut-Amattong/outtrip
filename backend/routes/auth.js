@@ -25,7 +25,12 @@ router.post("/register", async (req, res) => {
     const newUser = new User({ username, email, password: hashedPassword, interests });
     await newUser.save();
 
-    res.status(201).json({ message: "User registered successfully." });
+    res.status(201).json({
+      message: "User registered successfully.",
+      interests: newUser.interests,
+      username: newUser.username,
+      email: newUser.email
+    });
   } catch (error) {
     res.status(500).json({ message: "Server error." });
   }
@@ -47,7 +52,15 @@ router.post("/login", async (req, res) => {
     // สร้าง JWT token
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
 
-    res.json({ token, user: { id: user._id, username: user.username, email: user.email } });
+    res.json({
+      token,
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        interests: user.interests
+      }
+    });
   } catch (error) {
     res.status(500).json({ message: "Server error." });
   }

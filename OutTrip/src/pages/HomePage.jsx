@@ -8,8 +8,9 @@ const HomePage = () => {
   const [friends, setFriends] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [chatMessages, setChatMessages] = useState([]);
+  const [showOnlyInterests, setShowOnlyInterests] = useState(false);
   const userId = localStorage.getItem("userId");
-
+  const userInterests = JSON.parse(localStorage.getItem("interests") || "[]");
 
   const navigate = useNavigate();
 
@@ -42,15 +43,25 @@ const HomePage = () => {
     navigate("/");
   };
 
-
   const filteredTrips = trips.filter((trip) => {
     const keyword = searchTerm.toLowerCase();
-    return (
+    const matchesSearch =
       trip.name?.toLowerCase().includes(keyword) ||
       trip.description?.toLowerCase().includes(keyword) ||
       trip.location?.toLowerCase().includes(keyword) ||
-      trip.username?.toLowerCase().includes(keyword)
-    );
+      trip.username?.toLowerCase().includes(keyword);
+
+    if (!showOnlyInterests) return matchesSearch;
+
+    // If trip.tag is a string
+    if (typeof trip.tag === "string") {
+      return matchesSearch && userInterests.includes(trip.tag);
+    }
+    // If trip.tag is an array
+    if (Array.isArray(trip.tag)) {
+      return matchesSearch && trip.tag.some((tag) => userInterests.includes(tag));
+    }
+    return false;
   });
 
   return (
@@ -81,6 +92,12 @@ const HomePage = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button onClick={() => navigate("/create-trip")}>Create Trip</button>
+          <button
+            style={{ marginLeft: "10px" }}
+            onClick={() => setShowOnlyInterests((prev) => !prev)}
+          >
+            {showOnlyInterests ? "Show All Trips" : "Show My Interests"}
+          </button>
         </div>
         <div className="trip-list">
           {filteredTrips.length === 0 ? (
@@ -89,9 +106,7 @@ const HomePage = () => {
             filteredTrips.map((trip) => <TripCard key={trip._id} trip={trip} />)
           )}
         </div>
-
       </div>
-
 
       <div className="rightPanel">
         <div className="chat-section">

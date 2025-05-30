@@ -19,6 +19,16 @@ const TripCard = ({ trip }) => {
 
       <div className="trip-description">{trip.description}</div>
 
+      {/* Show tags if present */}
+      {trip.tag && (
+        <div className="trip-tags" style={{ margin: "8px 0" }}>
+          <strong>Tag:</strong>{" "}
+          {Array.isArray(trip.tag)
+            ? trip.tag.join(", ")
+            : trip.tag}
+        </div>
+      )}
+
       <div className="trip-footer">
         <span>📍 {trip.location}</span>
         <span>{trip.date}</span>
