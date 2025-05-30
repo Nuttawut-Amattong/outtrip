@@ -21,6 +21,28 @@
     height: 100vh;
 }
 
-.chatlist-items:hover {
-    background-color: darkcyan;
+.chatlist-item{
+    border-radius: 10px;
+    padding: 10px;
+    
+}
+
+.chatlist-item:hover{
+    background-color: #e0f7fa;
+}
+
+.chat button {
+    width: 100%;
+    height: 75px;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.chat p {
+    font-size: 2rem;
+    font-weight: bold;
 }

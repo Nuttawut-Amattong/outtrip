@@ -6,13 +6,12 @@ import Detail from "../component/chatcomponent/Chatdetail";
 import Chatlist from "../component/chatcomponent/Chatlist";
 
 function ChatPage() {
-    const { receiverId } = useParams(); 
+    const { receiverId } = useParams();
 
     return (
         <div className="chat-page">
             <div className="list-container"><Chatlist /></div>
             <div className="chatbody-container"><Chatbody receiverId={receiverId} /></div>
-            <div className="detail-container"><Detail receiverId={receiverId} /></div>
         </div>
     );
 }
