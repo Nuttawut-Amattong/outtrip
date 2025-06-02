@@ -5,7 +5,7 @@ import Register from "./component/Register.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import CreateTripPage from "./pages/CreateTripPage.jsx";
 import ChatPage from "./pages/ChatPage.jsx";
-
+import ReviewPage from "./pages/ReviewPage";
 
 
 
@@ -21,6 +21,7 @@ function App() {
       <Route path="/create-trip" element={<CreateTripPage />} />
       <Route path="/chat" element={<ChatPage />} />
       <Route path="/chat/:receiverId" element={<ChatPage />} />
+      <Route path="/reviews" element={<ReviewPage />} />
     </Routes>
   );
 }

@@ -6,7 +6,7 @@ import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/userRoute.js";
 import chatRoute from "./routes/chatRoute.js";
 import tripRoute from "./routes/tripRoute.js";
-
+import reviewRoute from "./routes/reviewRoute.js";
 dotenv.config();
 
 const app = express();
@@ -25,7 +25,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api", userRoutes);
 app.use("/api", chatRoute);
 app.use("/api", tripRoute);
-
+app.use("/api/reviews", reviewRoute);
 // ✅ Test route
 app.get('/', (req, res) => {
   res.send('Backend is running!');
