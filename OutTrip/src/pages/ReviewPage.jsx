@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Reviewstyles/ReviewPage.css";
-import Menu from "../components/Menu";
-import Chat from "../components/Chat";
-import SearchBar from "../components/SearchBar";
+import Menu from "../component/reviewcomponent/Menu";
+import SearchBar from "../component/reviewcomponent/SearchBar";
+import Chat from "../component/reviewcomponent/Chat";
+
 
 function ReviewPage() {
   const [tripName, setTripName] = useState("");

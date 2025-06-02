@@ -1,7 +1,15 @@
 import React from "react";
 import "../../styles/tripstyles/TripCard.css"; 
+import { useNavigate } from "react-router-dom";
 
 const TripCard = ({ trip }) => {
+
+   const navigate = useNavigate(); 
+
+  const handleReview = () => {
+    navigate("/reviews"); 
+  };
+
   return (
     <div className="trip-card">
       <div className="trip-header">
@@ -33,7 +41,7 @@ const TripCard = ({ trip }) => {
         <span>📍 {trip.location}</span>
         <span>{trip.date}</span>
         <div className="trip-buttons">
-          <button>Review</button>
+          <button onClick={handleReview}>Review</button>
           <button className="create-btn">Adding Trip</button>
         </div>
       </div>
