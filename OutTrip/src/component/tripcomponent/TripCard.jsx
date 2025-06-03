@@ -7,8 +7,10 @@ const TripCard = ({ trip }) => {
    const navigate = useNavigate(); 
 
   const handleReview = () => {
-    navigate("/reviews"); 
+    navigate(`/reviews/${trip._id}`);
   };
+
+  
 
   return (
     <div className="trip-card">

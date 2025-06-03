@@ -1,27 +1,37 @@
-import express from 'express';
-import Review from '../models/Review.js';
+import express from "express";
+import Review from "../models/Review.js";
 
 const router = express.Router();
 
-// POST: Create review
-router.post('/', async (req, res) => {
+
+router.get("/:tripId", async (req, res) => {
   try {
-    const { tripName, reviewText, rating } = req.body;
-    const newReview = new Review({ tripName, reviewText, rating });
-    await newReview.save();
-    res.status(201).json(newReview);
+    const reviews = await Review.find({ tripId: req.params.tripId }).sort({ createdAt: -1 });
+    res.json(reviews);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    res.status(500).json({ message: "Error fetching reviews." });
   }
 });
 
-// GET: All reviews
-router.get('/', async (req, res) => {
+
+router.post("/:tripId", async (req, res) => {
   try {
-    const reviews = await Review.find().sort({ createdAt: -1 });
-    res.json(reviews);
+    const { reviewText, rating } = req.body;
+
+    if (!reviewText || !rating) {
+      return res.status(400).json({ message: "Missing review text or rating." });
+    }
+
+    const newReview = new Review({
+      tripId: req.params.tripId,
+      reviewText,
+      rating
+    });
+
+    await newReview.save();
+    res.status(201).json({ message: "Review saved.", review: newReview });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ message: "Error saving review." });
   }
 });
 

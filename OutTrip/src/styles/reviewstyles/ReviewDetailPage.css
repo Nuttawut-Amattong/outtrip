@@ -1,0 +1,107 @@
+.review-detail-page {
+  background-image: url('/bg/ทะเล.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.review-card {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.review-card h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.review-card p {
+  margin-bottom: 0.5rem;
+}
+
+textarea {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.stars {
+  margin: 0.5rem 0 1rem;
+}
+
+.star {
+  font-size: 28px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.star.active {
+  color: orange;
+}
+
+.review {
+  background-color: #3f3cbb;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.review-item {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-left: 4px solid #3f3cbb;
+  border-radius: 6px;
+}
+
+.review-stars {
+  font-size: 18px;
+  color: orange;
+  margin-bottom: 0.25rem;
+}
+
+.error {
+  color: red;
+  padding: 2rem;
+  text-align: center;
+}
+
+.loading {
+  padding: 2rem;
+  text-align: center;
+}
+
+.message {
+  margin-top: 0.5rem;
+  color: green;
+}
+
+.home-btn {
+  margin-top: 1rem;
+  background-color: #666;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.home-btn:hover {
+  background-color: #444;
+}

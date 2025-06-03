@@ -3,7 +3,7 @@ import User from "../models/User.js";
 
 const router = express.Router();
 
-// ดึง user ตาม id (แสดง username)
+
 router.get("/users/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id).select("username");

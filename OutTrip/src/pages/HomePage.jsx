@@ -53,11 +53,11 @@ const HomePage = () => {
 
     if (!showOnlyInterests) return matchesSearch;
 
-    // If trip.tag is a string
+   
     if (typeof trip.tag === "string") {
       return matchesSearch && userInterests.includes(trip.tag);
     }
-    // If trip.tag is an array
+   
     if (Array.isArray(trip.tag)) {
       return matchesSearch && trip.tag.some((tag) => userInterests.includes(tag));
     }

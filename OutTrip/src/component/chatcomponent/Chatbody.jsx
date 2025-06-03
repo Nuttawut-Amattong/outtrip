@@ -4,7 +4,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useParams } from "react-router-dom";
 
 const Chatbody = () => {
-  const { receiverId } = useParams(); // รับ ID เพื่อนจาก URL
+  const { receiverId } = useParams();
   const [receiverName, setReceiverName] = useState("Loading...");
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState("");
@@ -13,19 +13,15 @@ const Chatbody = () => {
   const senderId = localStorage.getItem("userId");
 
   const loadMessages = () => {
-    fetch("http://localhost:5000/api/messages")
+    fetch(`http://localhost:5000/api/messages/${senderId}/${receiverId}`)
       .then(res => res.json())
-      .then(data => {
-        const chatOnly = data.filter((msg) =>
-          (msg.sender?._id === senderId && msg.receiver === receiverId) ||
-          (msg.sender === receiverId && msg.receiver?._id === senderId)
-        );
-        setMessages(chatOnly);
-      })
+      .then(data => setMessages(data))
       .catch(console.error);
   };
 
-  // ✅ ใช้ useEffect เดียว
+
+
+
   useEffect(() => {
     if (senderId && receiverId) {
       loadMessages();
@@ -42,7 +38,6 @@ const Chatbody = () => {
   useEffect(() => {
     if (!receiverId) return;
 
-    console.log("🔎 GET /api/users/" + receiverId); // ✅ log ตรงนี้
 
     fetch(`http://localhost:5000/api/users/${receiverId}`)
       .then(res => {
@@ -51,12 +46,12 @@ const Chatbody = () => {
       })
       .then(data => setReceiverName(data.username))
       .catch((err) => {
-        console.error("❌ Fetch user error:", err);
+
         setReceiverName("Error");
       });
   }, [receiverId]);
 
-  // ส่งข้อความ
+
   const handleSend = async () => {
     if (!inputText.trim()) return;
 
@@ -75,15 +70,15 @@ const Chatbody = () => {
 
       if (res.ok) {
         setInputText("");
-        loadMessages(); // 🔁 โหลดข้อความใหม่
+        loadMessages();
       } else {
         const errText = await res.text();
-        console.error("❌ Response not OK:", errText);
+
         setError("Failed to send.");
       }
     } catch (err) {
       console.error(err);
-      setError("❌ Server Error");
+      setError("Server Error");
     }
   };
 
@@ -101,7 +96,12 @@ const Chatbody = () => {
 
       <div className="center-chat">
         {messages.map((msg, idx) => (
-          <div key={idx} className={`message ${msg.sender?._id === senderId ? "own" : ""}`}>
+          <div
+            key={idx}
+            className={`message ${String(msg.sender) === senderId || msg.sender?._id === senderId ? "own" : ""
+              }`}
+          >
+
             <AccountCircleIcon fontSize='large' />
             <div className="texts">
               <p>{msg.text}</p>

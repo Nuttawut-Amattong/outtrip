@@ -1,12 +1,27 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const reviewSchema = new mongoose.Schema({
-  tripName: { type: String, required: true },
-  reviewText: { type: String, required: true },
-  rating: { type: Number, required: true },
-  createdAt: { type: Date, default: Date.now },
+  tripId: {
+     type: String,
+    required: true,
+    ref: "Trip"
+  },
+  reviewText: {
+    type: String,
+    required: true
+  },
+  rating: {
+    type: Number,
+    required: true,
+    min: 1,
+    max: 5
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
-const Review = mongoose.model('Review', reviewSchema);
+const Review = mongoose.model("Review", reviewSchema);
 
 export default Review;

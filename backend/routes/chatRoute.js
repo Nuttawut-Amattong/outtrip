@@ -8,7 +8,6 @@ router.post("/messages", async (req, res) => {
   try {
     const { sender, receiver, text } = req.body;
 
-    console.log("📥 POST payload:", { sender, receiver, text });
 
     if (!sender || !receiver || !text) {
       return res.status(400).json({ message: "Missing fields." });
@@ -22,20 +21,18 @@ router.post("/messages", async (req, res) => {
   await newMessage.save();
   res.status(201).json(newMessage);
 } catch (err) {
-  console.error("❌ Invalid ObjectId:", err.message);
   return res.status(400).json({ message: "Invalid sender or receiver ID." });
 }
 
     await newMessage.save();
     res.status(201).json(newMessage);
   } catch (err) {
-    console.error("❌ Backend error:", err);
     res.status(500).json({ message: "Failed to send message." });
   }
 });
 
 
-// GET /api/messages → ดึงข้อความทั้งหมด
+
 router.get("/messages", async (req, res) => {
   try {
     const messages = await Message.find().sort({ createdAt: 1 }).populate("sender", "username");
@@ -44,5 +41,27 @@ router.get("/messages", async (req, res) => {
     res.status(500).json({ message: "Failed to fetch messages." });
   }
 });
+
+
+router.get("/messages/:userA/:userB", async (req, res) => {
+  try {
+    const { userA, userB } = req.params;
+
+    const messages = await Message.find({
+      $or: [
+        { sender: userA, receiver: userB },
+        { sender: userB, receiver: userA },
+      ]
+    })
+    .sort({ createdAt: 1 })
+    .populate("sender", "username"); 
+
+    res.json(messages);
+  } catch (err) {
+    res.status(500).json({ message: "Error loading messages" });
+  }
+});
+
+
 
 export default router;
